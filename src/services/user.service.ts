@@ -1,7 +1,6 @@
 import { Repository } from 'typeorm';
 import { AppDataSource } from '../config/database';
 import { User } from '../entities/User.entity';
-import * as bcrypt from 'bcryptjs';
 
 export class UserService {
     private userRepository: Repository<User> = AppDataSource.getRepository(User);
