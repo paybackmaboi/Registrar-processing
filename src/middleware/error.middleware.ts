@@ -4,3 +4,5 @@ export function errorHandler(err: any, req: Request, res: Response, next: NextFu
     const statusCode = typeof err === 'string' && err.toLowerCase().endsWith('not found') ? 404 : 500;
     res.status(statusCode).json({ message: err.message || err });
 }
+
+//Formentera's folder, Please don't touch this if you are not assigned here. Thanks.
