@@ -1,36 +1,36 @@
 import { Repository } from 'typeorm';
 import { AppDataSource } from '../config/database';
-import { User } from '../entities/User.entity';
+import { Student } from '../entities/User.entity';
 import * as bcrypt from 'bcryptjs';
 
-export class UserService {
-    private userRepository: Repository<User> = AppDataSource.getRepository(User);
+export class StudentService {
+    private studentRepository: Repository<Student> = AppDataSource.getRepository(Student);
 
     async getAll() {
-        return this.userRepository.find({ 
+        return this.studentRepository.find({ 
             select: ['id', 'studentID', 'firstName', 'lastName', 'middleName','age','course', 'created_at', 'updated_at'],
             withDeleted: false
         });
     }
 
     async getById(id: number) {
-        return this.userRepository.findOne({
+        return this.studentRepository.findOne({
             where: { id },
             withDeleted: false
         });
     }
 
-    async create(data: Partial<User>) {
-        const student = this.userRepository.create(data);
-        return this.userRepository.save(student);
+    async create(data: Partial<Student>) {
+        const student = this.studentRepository.create(data);
+        return this.studentRepository.save(student);
     }
 
-    async update(id: number, data: Partial<User>) {
+    async update(id: number, data: Partial<Student>) {
         const student = await this.getById(id);
         if (!student) throw new Error('Student not found');
 
         Object.assign(student, data);
-        return this.userRepository.save(student);
+        return this.studentRepository.save(student);
     }
 
     async delete(id: number) {
@@ -38,6 +38,6 @@ export class UserService {
         if (!user) throw new Error('User not found');
 
         // This will perform a soft delete (sets deleted_at)
-        return this.userRepository.softRemove(user);
+        return this.studentRepository.softRemove(user);
     }
 }

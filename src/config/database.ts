@@ -2,7 +2,7 @@ import 'reflect-metadata';
 import dotenv from 'dotenv';
 import mysql from 'mysql2/promise';
 import { DataSource } from 'typeorm';
-import { User } from '../entities/User.entity';
+import { Student } from '../entities/User.entity';
 
 dotenv.config();
 
@@ -33,7 +33,7 @@ export const AppDataSource = new DataSource({
     username: process.env.DB_USER || 'root',
     password: process.env.DB_PASS || '',
     database: dbName,
-    entities: [User],
+    entities: [Student],
     synchronize: true,
 });
 
